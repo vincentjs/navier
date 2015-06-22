@@ -1,0 +1,23 @@
+module solver
+  !! Contains the discretized 2D Navier-Stokes solver. The x-momentum equation is given by:
+  !! $$ \frac{\partial u}{\partial t} + u \frac{\partial u}{\partial x} + v \frac{\partial u}{\partial y} = -\frac{1}{\rho} \frac{\partial p}{\partial x} + \nu \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} \right) $$
+  !! The y-momentum equation is similarly given by:
+  !! $$ \frac{\partial v}{\partial t} + u \frac{\partial v}{\partial x} + v \frac{\partial v}{\partial y} = -\frac{1}{\rho} \frac{\partial p}{\partial y} + \nu \left( \frac{\partial^2 v}{\partial x^2} + \frac{\partial^2 v}{\partial y^2} \right) $$
+  !! Finally, the pressure equation is given by:
+  !! $$ \frac{\partial^2 p}{\partial x^2} + \frac{\partial^2 p}{\partial y^2} = -\rho \left( \frac{\partial u}{\partial x} \frac{\partial u}{\partial x} + 2 \frac{\partial u}{\partial y} \frac{\partial v}{\partial x} + \frac{\partial v}{\partial y} \frac{\partial v}{\partial y} \right)
+
+  use precision
+  
+contains
+
+  pure real(kind=kd) function ppb(rho, dt, u, v, dx, dy)
+    !! Solves a portion of the pressure-Poisson equation.
+
+    real(kind=kd), intent(in) :: rho, dt, dx, dy
+    real(kind=kd), intent(in) :: u(1:2), v(1:2)
+    real(kind=kd), intent(out) :: b(1:2)
+    
+  end function ppb
+  
+  
+end module solver
