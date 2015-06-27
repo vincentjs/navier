@@ -10,7 +10,7 @@
     <meta name="author" content="Chris MacMackin" >
     <link rel="icon" href="../favicon.png">
 
-    <title>ppe &ndash; navier</title>
+    <title>cavityFlow &ndash; navier</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -60,6 +60,8 @@
 				
 								
 				
+            <li><a href="../program/main.html">Program</a></li>
+				
           </ul>
         <form action="../search.html" class="navbar-form navbar-right" role="search">
         <div class="form-group">
@@ -77,7 +79,7 @@
     
   
   <div class="row">
-    <h1>ppe
+    <h1>cavityFlow
     <small>Subroutine</small>
     
     </h1>
@@ -101,7 +103,7 @@
   
      <li><a href='../module/solver.html'>solver</a></li>
   
-     <li class="active">ppe</li>
+     <li class="active">cavityFlow</li>
   </ol>
   </div>
 </div>
@@ -118,7 +120,19 @@
     <div class="panel-heading text-left"><h3 class="panel-title">Variables</h3></div>
     <div class="list-group">
       
-      <a class="list-group-item" href="../proc/ppe.html#var-b">b</a>
+      <a class="list-group-item" href="../proc/cavityflow.html#var-un">un</a>
+      
+      <a class="list-group-item" href="../proc/cavityflow.html#var-vn">vn</a>
+      
+      <a class="list-group-item" href="../proc/cavityflow.html#var-i">i</a>
+      
+      <a class="list-group-item" href="../proc/cavityflow.html#var-nx">nx</a>
+      
+      <a class="list-group-item" href="../proc/cavityflow.html#var-ny">ny</a>
+      
+      <a class="list-group-item" href="../proc/cavityflow.html#var-mx">mx</a>
+      
+      <a class="list-group-item" href="../proc/cavityflow.html#var-my">my</a>
       
     </div>
   </div>
@@ -140,7 +154,7 @@
     <div class="panel-heading text-left"><h3 class="panel-title">All Procedures</h3></div>
     <div class="list-group">
       
-      <a class="list-group-item" href="../proc/ppe.html">ppe</a>
+      <a class="list-group-item" href="../proc/cavityflow.html">cavityFlow</a>
       
     </div>
   </div>
@@ -150,7 +164,7 @@
     
     <div class="col-lg-9" id='text'>
     <h2>
-public  subroutine ppe(p, rho, dt, u, v, dx, dy)
+public  subroutine cavityFlow(nt, nit, u, v, dt, dx, dy, p, rho, nu)
 </h2>
     
   
@@ -175,12 +189,12 @@ public  subroutine ppe(p, rho, dt, u, v, dx, dy)
   
 <tr>
   
-  <td><a class="anchor" name="var-p"></a>real(kind=kd),</td>
-  <td>intent(inout),</td>
+  <td><a class="anchor" name="var-nt"></a>integer,</td>
+  <td>intent(in)</td>
   <td></td>
   
-  <td>dimension(-1:1,-1:1)</td><td>::</td>
-  <td><strong>p</strong></td><td></td>
+  <td></td><td>::</td>
+  <td><strong>nt</strong></td><td></td>
   
 </tr>
 
@@ -190,12 +204,42 @@ public  subroutine ppe(p, rho, dt, u, v, dx, dy)
   
 <tr>
   
-  <td><a class="anchor" name="var-rho"></a>real(kind=kd),</td>
-  <td>intent(in)</td>
+  <td><a class="anchor" name="var-nit"></a>integer,</td>
+  <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>rho</strong></td><td></td>
+  <td><strong>nit</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-u"></a>real(kind=kd),</td>
+  <td>intent(inout),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>u</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-v"></a>real(kind=kd),</td>
+  <td>intent(inout),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>v</strong></td><td></td>
   
 </tr>
 
@@ -211,36 +255,6 @@ public  subroutine ppe(p, rho, dt, u, v, dx, dy)
   
   <td></td><td>::</td>
   <td><strong>dt</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-u"></a>real(kind=kd),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(-1:1,-1:1)</td><td>::</td>
-  <td><strong>u</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-v"></a>real(kind=kd),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(-1:1,-1:1)</td><td>::</td>
-  <td><strong>v</strong></td><td></td>
   
 </tr>
 
@@ -274,20 +288,56 @@ public  subroutine ppe(p, rho, dt, u, v, dx, dy)
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-p"></a>real(kind=kd),</td>
+  <td>intent(inout),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>p</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-rho"></a>real(kind=kd),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>rho</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nu"></a>real(kind=kd),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nu</strong></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
     
     
-    
-    <h3>Description</h3>
-    <p>Solves the pressure-Poisson equation:
- $$ p_{i,j}^n = \frac{\left(p_{i+1,j}^n + p_{i-1,j}^n \right) \Delta y^2 +
- \left( p_{i,j+1}^n + p_{i,j-1}^n \right) \Delta x^2}{2 \left(\Delta x^2 + \Delta y^2 \right)}
- - b $$
- where
- $$ b = \frac{1}{\Delta t} \left( \frac{u_{i+1,j} - u_{i-1,j}}{2\Delta x} +
- \frac{v_{i,j+1} - v_{i,j-1}}{2\Delta y} \right) - \left(\frac{u_{i+1,j} - u_{i-1,j}}{2\Delta x} \right)^2 - 2 \frac{u_{i,j+1}-u_{i,j-1}}{2\Delta y} \frac{v_{i+1,j}-v_{i-1,j}}{2\Delta x} - \left(\frac{v_{i,j+1}-v_{i,j-1}}{2\Delta y}\right)^2 $$</p>
     
     <br>
     
@@ -309,11 +359,95 @@ public  subroutine ppe(p, rho, dt, u, v, dx, dy)
   
 <tr>
   
-  <td><a class="anchor" name="var-b"></a>real(kind=kd),</td>
+  <td><a class="anchor" name="var-un"></a>real(kind=kd),</td>
+  
+  <td>public,</td>
+  <td>dimension(:,:), allocatable</td><td>::</td>
+  <td><strong>un</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-vn"></a>real(kind=kd),</td>
+  
+  <td>public,</td>
+  <td>dimension(:,:), allocatable</td><td>::</td>
+  <td><strong>vn</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-i"></a>integer,</td>
   
   <td>public</td>
   <td></td><td>::</td>
-  <td><strong>b</strong></td><td></td><td></td><td></td>
+  <td><strong>i</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nx"></a>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>nx</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-ny"></a>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>ny</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-mx"></a>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>mx</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-my"></a>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>my</strong></td><td></td><td></td><td></td>
   
 </tr>
 

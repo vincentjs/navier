@@ -10,7 +10,7 @@
     <meta name="author" content="Chris MacMackin" >
     <link rel="icon" href="../favicon.png">
 
-    <title>solver &ndash; navier</title>
+    <title>main &ndash; navier</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -79,8 +79,8 @@
     
   
   <div class="row">
-    <h1>solver 
-    <small>Module</small>
+    <h1>main 
+    <small>Program</small>
     
     </h1>
 	 
@@ -94,14 +94,14 @@
      
     
     
-    <li><i class="fa fa-code"></i><a href="../src/solver.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/main.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/solver.f90.html'>solver.f90</a></li>
+     <li><a href='../sourcefile/main.f90.html'>main.f90</a></li>
   
-     <li class="active">solver</li>
+     <li class="active">main</li>
   </ol>
   </div>
 </div>
@@ -114,19 +114,41 @@
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
   <div class="panel panel-primary">
-    <div class="panel-heading text-left"><h3 class="panel-title">Subroutines</h3></div>
+    <div class="panel-heading text-left"><h3 class="panel-title">Variables</h3></div>
     <div class="list-group">
       
-      <a class="list-group-item" href="../module/solver.html#proc-cavityFlow">cavityFlow</a>
+      <a class="list-group-item" href="../program/main.html#var-u">u</a>
+      
+      <a class="list-group-item" href="../program/main.html#var-v">v</a>
+      
+      <a class="list-group-item" href="../program/main.html#var-p">p</a>
+      
+      <a class="list-group-item" href="../program/main.html#var-nt">nt</a>
+      
+      <a class="list-group-item" href="../program/main.html#var-nx">nx</a>
+      
+      <a class="list-group-item" href="../program/main.html#var-ny">ny</a>
+      
+      <a class="list-group-item" href="../program/main.html#var-nit">nit</a>
+      
+      <a class="list-group-item" href="../program/main.html#var-c">c</a>
+      
+      <a class="list-group-item" href="../program/main.html#var-dt">dt</a>
+      
+      <a class="list-group-item" href="../program/main.html#var-dx">dx</a>
+      
+      <a class="list-group-item" href="../program/main.html#var-dy">dy</a>
+      
+      <a class="list-group-item" href="../program/main.html#var-rho">rho</a>
+      
+      <a class="list-group-item" href="../program/main.html#var-nu">nu</a>
+      
+      <a class="list-group-item" href="../program/main.html#var-x">x</a>
+      
+      <a class="list-group-item" href="../program/main.html#var-y">y</a>
+      
+      <a class="list-group-item" href="../program/main.html#var-i">i</a>
       
     </div>
   </div>
@@ -134,15 +156,21 @@
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
   <hr>
   
   <div class="panel panel-default">
-    <div class="panel-heading text-left"><h3 class="panel-title">All Modules</h3></div>
+    <div class="panel-heading text-left"><h3 class="panel-title">All Programs</h3></div>
     <div class="list-group">
       
-      <a class="list-group-item" href="../module/precision.html">precision</a>
-      
-      <a class="list-group-item" href="../module/solver.html">solver</a>
+      <a class="list-group-item" href="../program/main.html">main</a>
       
     </div>
   </div>
@@ -158,48 +186,22 @@
       
       <li><a href='../module/precision.html'>precision</a></li>
       
+      <li><a href='../module/solver.html'>solver</a></li>
+      
     </ul>
   
 
-    <p>Contains the discretized 2D Navier-Stokes solver. The x-momentum equation is given by:
- $$ \frac{\partial u}{\partial t} + u \frac{\partial u}{\partial x} + v \frac{\partial u}{\partial y} = -\frac{1}{\rho} \frac{\partial p}{\partial x} + \nu \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} \right) $$
- The y-momentum equation is similarly given by:
- $$ \frac{\partial v}{\partial t} + u \frac{\partial v}{\partial x} + v \frac{\partial v}{\partial y} = -\frac{1}{\rho} \frac{\partial p}{\partial y} + \nu \left( \frac{\partial^2 v}{\partial x^2} + \frac{\partial^2 v}{\partial y^2} \right) $$
- Finally, the pressure equation is given by:
- $$ \frac{\partial^2 p}{\partial x^2} + \frac{\partial^2 p}{\partial y^2} = -\rho \left( \frac{\partial u}{\partial x} \frac{\partial u}{\partial x} + 2 \frac{\partial u}{\partial y} \frac{\partial v}{\partial x} + \frac{\partial v}{\partial y} \frac{\partial v}{\partial y} \right) $$</p>
-    <br>
-
     
     
-    
-
-    
-    
-    
-    
-    
-
 
     
     <section>
-    <h2>Subroutines</h2>
+    <h2>Variables</h2>
     
-    
-  <div class="panel panel-default">
-  <div class="panel-heading codesum"><a class="anchor" name="proc-cavityFlow"></a><h3>
-public  subroutine <a href='../proc/cavityflow.html'>cavityFlow</a>(nt, nit, u, v, dt, dx, dy, p, rho, nu)
-</h3></div>
-  <div class="panel-body">
-       
-    
-    <h4>Arguments</h4>
-    
-      
-      
 <table class="table table-striped varlist">
 <thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
 
 
 
@@ -211,42 +213,11 @@ public  subroutine <a href='../proc/cavityflow.html'>cavityFlow</a>(nt, nit, u, 
   
 <tr>
   
-  <td><a class="anchor" name="var-nt"></a>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>nt</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-nit"></a>integer,</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>nit</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
   <td><a class="anchor" name="var-u"></a>real(kind=kd),</td>
-  <td>intent(inout),</td>
-  <td></td>
   
-  <td>dimension(:,:)</td><td>::</td>
-  <td><strong>u</strong></td><td></td>
+  
+  <td>dimension(:,:), allocatable</td><td>::</td>
+  <td><strong>u</strong></td><td></td><td></td><td></td>
   
 </tr>
 
@@ -257,56 +228,10 @@ public  subroutine <a href='../proc/cavityflow.html'>cavityFlow</a>(nt, nit, u, 
 <tr>
   
   <td><a class="anchor" name="var-v"></a>real(kind=kd),</td>
-  <td>intent(inout),</td>
-  <td></td>
-  
-  <td>dimension(:,:)</td><td>::</td>
-  <td><strong>v</strong></td><td></td>
-  
-</tr>
-
   
   
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-dt"></a>real(kind=kd),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>dt</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-dx"></a>real(kind=kd),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>dx</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-dy"></a>real(kind=kd),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>dy</strong></td><td></td>
+  <td>dimension(:,:), allocatable</td><td>::</td>
+  <td><strong>v</strong></td><td></td><td></td><td></td>
   
 </tr>
 
@@ -317,26 +242,10 @@ public  subroutine <a href='../proc/cavityflow.html'>cavityFlow</a>(nt, nit, u, 
 <tr>
   
   <td><a class="anchor" name="var-p"></a>real(kind=kd),</td>
-  <td>intent(inout),</td>
-  <td></td>
-  
-  <td>dimension(:,:)</td><td>::</td>
-  <td><strong>p</strong></td><td></td>
-  
-</tr>
-
   
   
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-rho"></a>real(kind=kd),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>rho</strong></td><td></td>
+  <td>dimension(:,:), allocatable</td><td>::</td>
+  <td><strong>p</strong></td><td></td><td></td><td></td>
   
 </tr>
 
@@ -346,28 +255,198 @@ public  subroutine <a href='../proc/cavityflow.html'>cavityFlow</a>(nt, nit, u, 
   
 <tr>
   
-  <td><a class="anchor" name="var-nu"></a>real(kind=kd),</td>
-  <td>intent(in)</td>
-  <td></td>
+  <td><a class="anchor" name="var-nt"></a>integer</td>
+  
   
   <td></td><td>::</td>
-  <td><strong>nu</strong></td><td></td>
+  <td><strong>nt</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nx"></a>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>nx</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-ny"></a>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>ny</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nit"></a>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>nit</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-c"></a>real(kind=kd)</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>c</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-dt"></a>real(kind=kd)</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>dt</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-dx"></a>real(kind=kd)</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>dx</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-dy"></a>real(kind=kd)</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>dy</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-rho"></a>real(kind=kd)</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>rho</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nu"></a>real(kind=kd)</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>nu</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-x"></a>real(kind=kd),</td>
+  
+  
+  <td>dimension(:), allocatable</td><td>::</td>
+  <td><strong>x</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-y"></a>real(kind=kd),</td>
+  
+  
+  <td>dimension(:), allocatable</td><td>::</td>
+  <td><strong>y</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-i"></a>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>i</strong></td><td></td><td></td><td></td>
   
 </tr>
 
 </tbody>
 </table>
 
-      
+    </section>
+    <br>
     
     
-        
+    
+    
+    
 
-  </div>
-  </div>
-
     
-    </section>    
+    
+    
+
+
     
     
     </div>
