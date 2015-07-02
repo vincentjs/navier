@@ -14,7 +14,9 @@ module solver
 contains
 
   subroutine cavityFlow(nt, nit, u, v, dt, dx, dy, p, rho, nu)
-
+    !! First order finite difference implementation of the Navier-Stokes equation.
+    !! 2D lid-driven cavity flow.
+    
     real(kind=kd), dimension(:,:), intent(in out) :: u, v, p
     real(kind=kd), intent(in) :: dt, dx, dy, rho, nu
     integer, intent(in) :: nt
