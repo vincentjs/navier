@@ -8,18 +8,55 @@ module solver
 
   use precision
 
-  public :: cavityFlow
-  private :: ppe, ppb
+  implicit none
+
+  public :: c_cavityFlow, cavityFlow
+  private ::ppe, ppb
   
 contains
 
+  subroutine c_cavityFlow(nt, nit, c_u, c_v, dt, dx, dy, c_p, rho, nu, nx, ny) bind(c, name='c_cavityflow')
+    !! C wrapper for subroutine cavityFlow. Fortran is column-major, C++ is row major.
+    
+    use iso_c_binding
+
+    real(kind=c_kd), dimension(:), intent(in out) :: c_u, c_v, c_p
+    real(kind=c_kd), intent(in) :: dt, dx, dy, rho, nu
+    integer(c_int), intent(in) :: nt, nit, nx, ny
+    real(kind=c_kd), dimension(nx,ny) :: u, v, p
+    integer :: i, j, k
+
+    ! Convert C to Fortran
+    do j = 1, ny
+       do i = 1, nx
+          k = (j-1)*ny + (i-1)
+          u(i,j) = c_u(k)
+          v(i,j) = c_v(k)
+          p(i,j) = c_p(k)
+       end do
+    end do
+    
+    call cavityFlow(nt, nit, u, v, dt, dx, dy, p, rho, nu)
+
+    ! Convert Fortran to C
+    do j = 1, ny
+       do i = 1, nx
+          k = (j-1)*ny + (i-1)
+          c_u(k) = u(i,j)
+          c_v(k) = v(i,j)
+          c_p(k) = p(i,j)
+       end do
+    end do
+    
+  end subroutine c_cavityFlow
+  
   subroutine cavityFlow(nt, nit, u, v, dt, dx, dy, p, rho, nu)
     !! First order finite difference implementation of the Navier-Stokes equation.
     !! 2D lid-driven cavity flow.
-    
+
     real(kind=kd), dimension(:,:), intent(in out) :: u, v, p
     real(kind=kd), intent(in) :: dt, dx, dy, rho, nu
-    integer, intent(in) :: nt
+    integer, intent(in) :: nt, nit
 
     real(kind=kd), dimension(:,:), allocatable :: un, vn
     integer :: i, nx, ny, mx, my
@@ -97,7 +134,7 @@ contains
     real(kind=kd), intent(in) :: rho, dt, dx, dy
     real(kind=kd), dimension(:,:), intent(in) :: u, v
     real(kind=kd), dimension(:,:) :: p
-    integer :: mx, my
+    integer :: mx, my, i
     real(kind=kd), dimension(1:nx, 1:ny) :: b, pn, ppe
 
     mx = nx - 1
