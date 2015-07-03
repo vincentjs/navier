@@ -20,16 +20,16 @@ contains
     
     use iso_c_binding
 
-    real(kind=c_kd), dimension(:), intent(in out) :: c_u, c_v, c_p
-    real(kind=c_kd), intent(in) :: dt, dx, dy, rho, nu
-    integer(c_int), intent(in) :: nt, nit, nx, ny
+    real(kind=c_kd), dimension(*), intent(in out) :: c_u, c_v, c_p
+    real(kind=c_kd), value, intent(in) :: dt, dx, dy, rho, nu
+    integer(c_int), value, intent(in) :: nt, nit, nx, ny
     real(kind=c_kd), dimension(nx,ny) :: u, v, p
     integer :: i, j, k
 
     ! Convert C to Fortran
     do j = 1, ny
        do i = 1, nx
-          k = (j-1)*ny + (i-1)
+          k = (j-1)*nx + i
           u(i,j) = c_u(k)
           v(i,j) = c_v(k)
           p(i,j) = c_p(k)
@@ -41,7 +41,7 @@ contains
     ! Convert Fortran to C
     do j = 1, ny
        do i = 1, nx
-          k = (j-1)*ny + (i-1)
+          k = (j-1)*nx + i
           c_u(k) = u(i,j)
           c_v(k) = v(i,j)
           c_p(k) = p(i,j)

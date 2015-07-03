@@ -5,19 +5,6 @@ extern "C"
 
 #include <stdlib.h>
 
-double **alloc_2d_double(int rows, int cols)
-{
-	double *data = (double *)malloc(rows*cols*sizeof(int*));
-	double **array = (double **)malloc(rows*sizeof(int*));
-
-	for (int i=0; i<rows; i++)
-	{
-		array[i] = &(data[cols*i]);
-	}
-
-	return array;
-}
-
 int main(int argc, char* argv[])
 {
 
