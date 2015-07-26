@@ -1,2 +1,11 @@
 # navier
-Navier-Stokes solvers and CFD models written in C++ and modern Fortran. Ultimate goal is to have a fully-realized CFD software suite containing a library of finite-volume solvers and models, compiled in modern Fortran, wrapped in a C++ interface. GUI library provided by Qt, visualization and post-processing provided by VTK.
+Navier-Stokes solvers and turbulence models written in C++, developed as a learning tool.
+
+# todo
+  * Develop a GUI (based on Qt)
+  * C++ and Python examples
+  * Results exportable in CSV (*.csv) or HDF5 (*.h5) formats.
+  * Full example from mesh generation to visualization (using Paraview)
+
+# license
+MIT. See license file.
