@@ -5,7 +5,7 @@ WFLAGS := -Wall -Wextra -Wconversion -pedantic
 DFLAGS := -g -O0 -fbacktrace -fbounds-check -ffpe-trap=zero,overflow,underflow
 FFLAGS := -c -cpp $(DFLAGS) $(WFLAGS)
 LDLIBS :=
-LDFLAGS:=
+LDFLAGS:= 
 SRCDIR := ./src/
 OBJDIR := ./include/
 BINDIR := ./bin/
@@ -23,7 +23,7 @@ $(OUTPUT): $(OBJECTS)
 #	$(FC) $(LDFLAGS) -o $@ $^ $(LDLIBS)
 
 $(OBJECTS): $(OBJDIR)%.o: $(SRCDIR)%.f90
-	$(FC) -J$(OBJDIR) $(FFLAGS) $< -o $@
+	$(FC) -fPIC -J$(OBJDIR) $(FFLAGS) $< -o $@
 
 $(OBJDIR)main.o: $(OBJDIR)precision.o $(OBJDIR)solver.o
 
@@ -32,5 +32,7 @@ clean:
 
 dist-clean: clean
 	rm -f $(OUTPUT)
+
+scratch: clean $(all)
 
 install: $(OUTPUT) clean
