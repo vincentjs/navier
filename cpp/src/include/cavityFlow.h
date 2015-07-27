@@ -1,3 +1,6 @@
+#ifndef CAVITYFLOW_H
+#define CAVITYFLOW_H
+
 class CavityFlow
 {
 public:
@@ -7,3 +10,5 @@ public:
 
 	~CavityFlow();
 };
+
+#endif
