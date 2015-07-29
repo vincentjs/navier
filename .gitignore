@@ -1,0 +1,19 @@
+# Project #/
+cpp/lib/
+
+# Temporary Files #
+*~
+
+# Compiled Sources #
+*.o
+*.so
+*.dll
+*.exe
+
+# Compiled Directories #
+bin/
+debug/
+release/
+
+# Documentation #
+doc/

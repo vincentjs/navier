@@ -7,7 +7,7 @@ FFLAGS := -c -cpp $(DFLAGS) $(WFLAGS)
 LDLIBS :=
 LDFLAGS:= 
 SRCDIR := ./src/
-OBJDIR := ./include/
+OBJDIR := ./debug/
 BINDIR := ./bin/
 SOURCES = $(wildcard $(SRCDIR)*.f90)
 OBJECTS = $(addprefix $(OBJDIR), $(notdir $(SOURCES:.f90=.o)))
