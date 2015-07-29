@@ -8,7 +8,7 @@ OBJDIR := ./debug/
 BINDIR := ./bin/
 LDLIBS := ./lib/ns_solver.a
 LDFLAGS:= -lgfortran -lm 
-INCDIR := -I$(HEADIR) -I/usr/include/boost 
+INCDIR := -I$(HEADIR)  
 SOURCES = $(wildcard $(SRCDIR)*.cpp)
 OBJECTS = $(addprefix $(OBJDIR), $(notdir $(SOURCES:.cpp=.o)))
 OUTPUT := $(BINDIR)cfd.so
@@ -25,8 +25,8 @@ all: $(OUTPUT)
 $(OUTPUT): $(OBJECTS)
 	$(CXX) $(LDFLAGS) $(WFLAGS) -shared -o $@ $^ $(LDLIBS)
 
-$(OBJECTS): $(OBJDIR)%.o: $(SOURCES)
-	$(CXX) -fPIC -J$(OBJDIR) $(CXXFLAGS) $(INCDIR) $< -o $@
+$(OBJDIR)%.o: $(SRCDIR)%.cpp
+	$(CXX) -fPIC -J$(OBJDIR) $(CXXFLAGS) $(INCDIR) $(WFLAGS) $< -o $@
 
 clean:
 	rm -f $(OBJECTS) $(OUTPUT) 
